@@ -1,0 +1,6 @@
+/venv/*
+/.vscode/*
+/app4/application/__pycache__/*
+/app3/application/__pycache__/*
+/app2/application/__pycache__/*
+/app1/application/__pycache__/*
