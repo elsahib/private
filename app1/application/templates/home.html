@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 {% block body_content%}
-<a href="{{ url_for('gen') }}">Click here to generate a Code</a>
+<div class="jumbotron ">
+<a href="{{ url_for('gen') }}"><button type="button" class="btn btn-outline-primary">Click here to generate a Code</button></a>
 <h3> Generated code will show below: </h3>
 {% if code and prize %}
 <p>Your generated code is </p>
@@ -13,4 +14,5 @@
 {% else %}
 <span style="color: aqua;">Please click the link above to get a code</span>
 {% endif %}
+</div>
 {% endblock body_content %}

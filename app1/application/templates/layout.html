@@ -73,6 +73,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#"></a>
       </li>
+      {% if current_user.is_authenticated %}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -81,16 +82,31 @@
           <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
         </div>
       </li>
+      {% endif %}
     </ul>
   </div>
 </nav>
 
-<main role="main" class="container">
-  <div class="starter-template">
-  {% block body_content %}
+<!-- <main role="main" class="container-fluid"> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md"></div>
+    </div>
+    <div class="row">
 
-  {% endblock body_content %}
-</main><!-- /.container -->
+      <div class="col align-items-stretch">  
+        {% block body_content %}
+
+        {% endblock body_content %}
+      </div>
+
+     </div>
+     <div class="row">
+      <div class="col-md"></div>
+    </div>
+  </div>
+
+<!-- </main> -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
