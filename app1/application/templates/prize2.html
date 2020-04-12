@@ -33,14 +33,16 @@
   {% endif %}
   {% endfor %}
 
-  {% if prizes.has_prev %}
+  {% if prizes.page - 5 <= 1 %}
+  &lt;&lt; Back 5
+  {% else %}
   <a href="{{ url_for('view', num=prizes.prev_num-5) }}">&lt;&lt; Back 5 </a>
-  {% else %}&lt;&lt; Back 5
   {% endif %} | 
 
-  {% if prizes.has_next %}
+  {% if prizes.page +5 >= prizes.pages %}
+  Forward 5 &gt;&gt;
+  {% else %}
   <a href="{{ url_for('view', num=prizes.next_num+5) }}">Forward 5 &gt;&gt;</a>
-  {% else %}Forward 5 &gt;&gt;
   {% endif %}
 
   
