@@ -1,4 +1,16 @@
 {% extends 'layout.html' %}
 {% block body_content%}
-<a href="{{ url_for('')}}"></a>
+<a href="{{ url_for('gen') }}">Click here to generate a Code</a>
+<h3> Generated code will show below: </h3>
+{% if code and prize %}
+<p>Your generated code is </p>
+<br>
+<h4>{{ code }}</h4>
+<br>
+<p>and you Won </p>
+<br>
+<h4>{{ prize }}£</h4> 
+{% else %}
+<span style="color: aqua;">Please click the link above to get a code</span>
+{% endif %}
 {% endblock body_content %}
