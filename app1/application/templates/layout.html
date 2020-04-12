@@ -26,36 +26,6 @@
 <meta name="theme-color" content="#563d7c">
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      .pagination-page-info {
-        padding: .6em;
-        padding-left: 0;
-        width: 40em;
-        margin: .5em;
-        margin-left: 0;
-        font-size: 12px;
-    }
-      .pagination-page-info b {
-        color: black;
-        background: #6aa6ed;
-        padding-left: 2px;
-        padding: .1em .25em;
-        font-size: 150%;
-}
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.4/examples/starter-template/starter-template.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.4/examples/sign-in/signin.css" rel="stylesheet">
@@ -70,9 +40,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"></a>
-      </li>
+      
       {% if current_user.is_authenticated %}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>
@@ -82,28 +50,22 @@
           <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
         </div>
       </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+      </li>
       {% endif %}
     </ul>
   </div>
 </nav>
 
 <!-- <main role="main" class="container-fluid"> -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md"></div>
-    </div>
-    <div class="row">
-
-      <div class="col align-items-stretch">  
+  <div class="container overflow-auto">
+    
         {% block body_content %}
 
         {% endblock body_content %}
-      </div>
-
-     </div>
-     <div class="row">
-      <div class="col-md"></div>
-    </div>
+  
   </div>
 
 <!-- </main> -->

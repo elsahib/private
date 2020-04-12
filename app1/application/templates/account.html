@@ -1,13 +1,19 @@
 {% extends "layout.html" %}
 {% block body_content %}
-<section id="intro">
+<div class="row"></div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col align-self-center">
         <h1>{{ current_user.first_name }}'s Account</h1>
-        <div class='form'>
+        <br>
+        <div class='flex-column '>
             <form method='POST' action=''>
                 {{ form.hidden_tag() }}
-                <div class="form-group">
-                    {{ form.first_name.label }}
+                <div class="form-group row">
+                    <label for="firstname" class="col-sm-2 ">{{ form.first_name.label }}</label>
+                    <div class="col-md-10">
                     {{ form.first_name }}
+                    </div>
                     {% if form.first_name.errors %}
                     <div class="error">
                         {% for error in form.first_name.errors %}
@@ -17,9 +23,11 @@
                     {% endif %}
                 </div>
                 <br>
-                <div class="form-group">
-                    {{ form.last_name.label }}
+                <div class="form-group row">
+                    <label for="lastname" class="col-sm-2 ">{{ form.last_name.label }}</label>
+                    <div class="col-md-10">
                     {{ form.last_name }}
+                    </div>
                     {% if form.last_name.errors %}
                     <div class="error">
                         {% for error in form.last_name.errors %}
@@ -29,9 +37,11 @@
                     {% endif %}
                 </div>
                 <br>
-                <div class='form_group'>
-                    {{ form.email.label }}
+                <div class='form_group row'>
+                    <label for="email" class="col-sm-2 ">{{ form.email.label }}</label>
+                    <div class="col-md-10">
                     {{ form.email }}
+                    </div>
                     {% if form.email.errors %}
                         <div class='error'>
                             {% for error in form.email.errors %}
@@ -45,10 +55,16 @@
                     {{ form.submit }}
                     </div>
             </form>
-            <form action="{{ url_for('account_delete') }}">
-                <p>Note: All your Data will be Removed</p>
-                <button type="submit">Delete your account</button>
+            <form class="jumbotron" action="{{ url_for('account_delete') }}">
+                
+                <button class="btn-outline-danger" type="submit">Delete your account</button>
+                 <p class="bg-info">Note: All your Data will be Removed</p>
+
             </form>
-        </div>
-        </section>
+        </div></div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row"></div>
+
+        
 {% endblock body_content %}

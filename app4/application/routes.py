@@ -14,9 +14,11 @@ def prize():
     if s[0] == 'a':
         if stakes in range(1,26):
             prize = 100
+        elif stakes in range(26,101):
+            prize = 50
         else:
-            prize = random.randint(10,50)
+            prize = random.randint(1,50)
     else:
-        prize = random.randint(10,50)
+        prize = random.randint(1,50)
     return jsonify({"code":s+n,"prize":prize})
 

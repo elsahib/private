@@ -3,11 +3,46 @@
 
 
 {% if prizes.items %}
-<div class="jumbotron">
-  <span>Below is everything you entered</span>
+
+  <div class="text-center jumbotron ">
+    <div>    
+      <p>Below are your codes</p>
+    </div>
+  </div> 
+
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  
+  <div class="table-responsive">
+
+<div class="d-flex justify-content-around">
+  <div class="p-2">{% if prizes.page - 5 <= 1 %}
+  &lt;&lt; Back 5
+  {% else %}
+  <a href="{{ url_for('view', num=prizes.prev_num-5) }}">&lt;&lt; Back 5 </a>
+  {% endif %} |</div>
+  <div class="p-2">
+   {% for page in prizes.iter_pages(left_edge=2, left_current=2, right_current=2, right_edge=2) %}
+  {% if page %}
+  <a href="{{ url_for('view', num= page) }}"> {{ page }}</a>
+  {% else %}
+   ...
+  {% endif %}
+  {% endfor %}
+              </div>
+  <div class="p-2">|{% if prizes.page +5 >= prizes.pages %}
+  Forward 5 &gt;&gt;
+  {% else %}
+  <a href="{{ url_for('view', num=prizes.next_num+5) }}">Forward 5 &gt;&gt;</a>
+  {% endif %}</div>
+</div>
+
+<!-- responsive variations -->
+
   <table id="data" class="table table-striped table-dark table-hover">
       
-    <thead class="thead-light">
+    <thead class="thead-dark">
       <tr>
         <th >ID</th>
         <th >Code</th>
@@ -23,36 +58,21 @@
         <td >{{ prize.prize }} £</td>
         <td ><a href='/deleteprize/{{ prize.prize_id }}'><button type="button" class="btn btn-outline-danger">Delete</button></a></td>
       </tr>
-      <br />
   {% endfor %}
     </tbody>
   </table>
-  <section>
-  {% for page in prizes.iter_pages(left_edge=2, left_current=2, right_current=2, right_edge=2) %}
-  {% if page %}
-  <a href="{{ url_for('view', num= page) }}"> {{ page }}</a>
-  {% else %}
-   ...
-  {% endif %}
-  {% endfor %}
+  </div>
 
-  {% if prizes.page - 5 <= 1 %}
-  &lt;&lt; Back 5
-  {% else %}
-  <a href="{{ url_for('view', num=prizes.prev_num-5) }}">&lt;&lt; Back 5 </a>
-  {% endif %} | 
 
-  {% if prizes.page +5 >= prizes.pages %}
-  Forward 5 &gt;&gt;
-  {% else %}
-  <a href="{{ url_for('view', num=prizes.next_num+5) }}">Forward 5 &gt;&gt;</a>
-  {% endif %}
-  </section>
   
 {% else %}
 <p>You have no entries</p>
 
 {% endif %}
+
 </div>
+<div class="col-md2"></div>
+</div>
+<div class="row"></div>
 
 {% endblock body_content %}
