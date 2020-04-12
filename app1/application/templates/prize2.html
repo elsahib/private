@@ -4,7 +4,8 @@
 
 {% if prizes.items %}
 
-  <div class="text-center jumbotron ">
+  <div class="text-center ">
+    <br><br>
     <div>    
       <p>Below are your codes</p>
     </div>
@@ -17,15 +18,16 @@
   <div class="table-responsive">
 
 <div class="d-flex justify-content-around">
-  <div class="p-2">{% if prizes.page - 5 <= 1 %}
+  <div class="p-2">
+    {% if prizes.page - 5 <= 1 %}
   &lt;&lt; Back 5
   {% else %}
-  <a href="{{ url_for('view', num=prizes.prev_num-5) }}">&lt;&lt; Back 5 </a>
+  <a href="{{ url_for('view', num=prizes.prev_num-5) }}"><button type="button" class="btn btn-outline-secondary">&lt;&lt; Back 5</button></a>
   {% endif %} |</div>
   <div class="p-2">
-   {% for page in prizes.iter_pages(left_edge=2, left_current=2, right_current=2, right_edge=2) %}
+   {% for page in prizes.iter_pages(left_edge=2, left_current=1, right_current=1, right_edge=2) %}
   {% if page %}
-  <a href="{{ url_for('view', num= page) }}"> {{ page }}</a>
+  <button type="button" class="btn btn-outline-secondary"><a href="{{ url_for('view', num= page) }}"> {{ page }}</a></button>
   {% else %}
    ...
   {% endif %}
@@ -34,7 +36,7 @@
   <div class="p-2">|{% if prizes.page +5 >= prizes.pages %}
   Forward 5 &gt;&gt;
   {% else %}
-  <a href="{{ url_for('view', num=prizes.next_num+5) }}">Forward 5 &gt;&gt;</a>
+  <a href="{{ url_for('view', num=prizes.next_num+5) }}"><button type="button" class="btn btn-outline-secondary">Forward 5 &gt;&gt;</button></a>
   {% endif %}</div>
 </div>
 
