@@ -40,8 +40,7 @@ def gen():
 def view(num):
     per_page = 10
     prizes = db.session.query(Prizes).select_from(Prizes).filter_by(id = current_user.id).paginate(per_page = per_page, page = num, error_out=True )
-    # prizesdata = db.session.query(Prizes).select_from(Prizes).filter_by(id = current_user.id).all()
-
+    
     return render_template('prize2.html', title='View prizes', prizes=prizes)
 
 #========= remove prizes =====================

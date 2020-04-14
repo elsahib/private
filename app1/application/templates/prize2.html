@@ -6,7 +6,7 @@
 
   <div class="text-center ">
     <br><br>
-    <div>    
+    <div class="alert alert-success mx-auto w-25 mt-3 pt-4">    
       <p>Below are your codes</p>
     </div>
   </div> 
@@ -20,21 +20,21 @@
 <div class="d-flex justify-content-around">
   <div class="p-2">
     {% if prizes.page - 5 <= 1 %}
-  &lt;&lt; Back 5
+    <button type="button" class="btn btn-outline-secondary disabled">&lt;&lt; Back 5</button>
   {% else %}
   <a href="{{ url_for('view', num=prizes.prev_num-5) }}"><button type="button" class="btn btn-outline-secondary">&lt;&lt; Back 5</button></a>
   {% endif %} |</div>
   <div class="p-2">
    {% for page in prizes.iter_pages(left_edge=2, left_current=1, right_current=1, right_edge=2) %}
   {% if page %}
-  <button type="button" class="btn btn-outline-secondary"><a href="{{ url_for('view', num= page) }}"> {{ page }}</a></button>
+  <a href="{{ url_for('view', num= page) }}"><button type="button" class="btn btn-outline-secondary"> {{ page }}</button></a>
   {% else %}
    ...
   {% endif %}
   {% endfor %}
               </div>
   <div class="p-2">|{% if prizes.page +5 >= prizes.pages %}
-  Forward 5 &gt;&gt;
+    <button type="button" class="btn btn-outline-secondary disabled">Forward 5 &gt;&gt;</button>
   {% else %}
   <a href="{{ url_for('view', num=prizes.next_num+5) }}"><button type="button" class="btn btn-outline-secondary">Forward 5 &gt;&gt;</button></a>
   {% endif %}</div>
