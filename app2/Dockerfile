@@ -1,8 +1,8 @@
 FROM quoinedev/python3.7-pandas-alpine 
 
-RUN apt update
-RUN apt install -y python3
-RUN apt install -y python3-pip
+RUN apk update
+RUN apk install -y python3
+RUN apk install -y python3-pip
 COPY . .
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
