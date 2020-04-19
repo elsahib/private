@@ -1,0 +1,158 @@
+    1  ls
+    2  exit
+    3  sudo apt install
+    4  sudo apt-get update
+    5  sudo apt install git
+    6  curl
+    7  curl https://get.docker.com | sudo bash
+    8  docker
+    9  curl https://get.docker.com | sudo bash
+   10  sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common
+   11  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   12  sudo apt-key fingerprint 0EBFCD88
+   13  sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   14     $(lsb_release -cs) \
+   15     stable"
+   16  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   17  docker
+   18  # make sure jq & curl is installed
+   19  sudo apt update
+   20  sudo apt install -y curl jq
+   21  version=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.tag_name')
+   22  sudo curl -L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   23  sudo chmod +x /usr/local/bin/docker-compose
+   24  docker-compose --version
+   25  ls
+   26  touch hi.txt
+   27  ls
+   28  rm hi.txt 
+   29  git clone https://github.com/elsahib20/private.git
+   30  ls
+   31  cd private/
+   32  ls
+   33  python
+   34  sudo apt install python3 python-venv
+   35  sudo apt install python3 python-env
+   36  sudo apt install python3 pythons-venv python3-pip
+   37  sudo apt install python3 python3-venv python3-pip
+   38  python3 -m venv venv
+   39  . venv/bin/activate
+   40  pip3 install -r ./app1/requirements.txt 
+   41  git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe"
+   42  git
+   43  pwd
+   44  . code
+   45  cd private/
+   46  . venv/bin/activate
+   47  code .
+   48  git checkout przgen
+   49  git branch
+   50  cd app2
+   51  docker build -t devops .
+   52  docker
+   53  cd private/app2
+   54  docker build -t devops .
+   55  exiy
+   56  exit
+   57  ls
+   58  cd private/
+   59  ls
+   60  . venv/bin/activate
+   61  code .
+   62  wsl
+   63  deactivate 
+   64  wsl
+   65  sudo apt install wsl
+   66  wsl
+   67  . venv/bin/activate
+   68  code .
+   69  sudo usermod -aG docker $(whoami)
+   70  docker
+   71  cd app2
+   72  docker build -t app2 .
+   73  docker ps
+   74  docker run -d -p 80:80 --name nginx ournginx
+   75  docker run -d -p 8000:8000 --name app2 app2
+   76  cd ./../app3
+   77  docker build -t app3 .
+   78  docker run -d -p 8001:8000 --name app2 app2
+   79  docker run -d -p 8001:8000 --name app3 app3
+   80  cd ./../app4
+   81  docker build -t app4 .
+   82  docker run -d -p 8001:8000 --name app4 app4
+   83  docker run -d -p 8002:8000 --name app4 app4
+   84  docker ps
+   85  docker ps -a
+   86  docker rm app4
+   87  docker run -d -p 8002:8000 --name app4 app4
+   88  docker rm app4
+   89  docker rm -f app4
+   90  docker rmi app4
+   91  docker build -t app4 .
+   92  docker run -d -p 8002:8000 --name app4 app4
+   93  curl localhost:8000
+   94  curl localhost:8000/num
+   95  curl localhost:8000/text
+   96  curl localhost:8001/num
+   97  curl localhost:8002/home
+   98  curl localhost:8002
+   99  docker exec -it app4 bash
+  100  docker exec -it app4 /bin/ash
+  101  docker exec -it app3 /bin/ash
+  102  docker exec -it app2 /bin/ash
+  103  docker network create my-network
+  104  docker network ls
+  105  docker network connect my-network app2
+  106  docker network connect my-network app3
+  107  docker network connect my-network app4
+  108  docker exec -it app2 /bin/ash
+  109  docker ps
+  110  docker inspect app2
+  111  docker inspect app3
+  112  docker inspect app4
+  113  docker exec -it app2 /bin/ash
+  114  docker inspect app2
+  115  docker ps
+  116  docker rm app4
+  117  docker rm -f app4
+  118  docker ps -a
+  119  docker images
+  120  docker rmi app4
+  121  docker build -t app4 .
+  122  docker run -d -p 8002:8000 --name app4 app4
+  123  docker network connect my-network app4
+  124  docker rm -f app4
+  125  docker rmi app4
+  126  docker build -t app4 .
+  127  docker run -d -p 8002:8000 --name app4 app4
+  128  docker network connect my-network app4
+  129  cd ./../app1
+  130  docker build -t app1 .
+  131  docker exec -it app2 /bin/ash
+  132  docker build -t app1 .
+  133  docker exec -it app2 /bin/ash
+  134  docker run -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root mysql:5
+  135  docker exec -it mysql bash
+  136  export SECRET_KEY=ysofxj^_bm1#q*px4o5vuf%=2s-m98bfv8hk2l231jl^0po
+  137  export DATABASE_URI=mysql+pymysql://root:root@mysql/prizes
+  138  docker build -t app1 .
+  139  docker exec -it app2 /bin/ash
+  140* docker build -t app1 .docker
+  141  docker exec -it app1 /bin/ash
+  142  docker ps
+  143  docker run -d -p 8003:8000 -e SECRET_KEY -e DATABASE_URI --name app1 app1
+  144  docker ps
+  145  docker exec -it app1 /bin/ash
+  146  docker network connect my-network app1
+  147  docker network connect my-network mysql
+  148  docker exec -it app1 /bin/ash
+  149  docker rm -f app1
+  150  docker rmi app1
+  151  docker build -t app1 .
+  152  docker run -d -p 8003:8000 -e SECRET_KEY -e DATABASE_URI --name app1 app1
+  153  docker network connect my-network app1
+  154  cd ..
+  155  ls
+  156  git config --global user.name "Osman Elsahib"
+  157  git config --global user.email "elsahib20@gmail.com"
+  158  history > history_for_print.txt
