@@ -25,7 +25,7 @@ def home():
 @app.route('/gen')
 @login_required
 def gen():
-    response = requests.get('http://localhost:5003/home')
+    response = requests.get('http://app4:8000/home')
     code = str(response.json()["code"])
     prize = str(response.json()["prize"])
     prizeData = Prizes(code =code, prize = prize, id = current_user.id)
