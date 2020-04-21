@@ -7,7 +7,7 @@
   <div class="text-center ">
     <br><br>
     <div class="alert alert-success mx-auto w-25 mt-3 pt-4">    
-      <p>Below are your codes
+      <p>Below are your codes.
       </p>
     </div>
   </div> 
@@ -63,7 +63,7 @@
       <tr>
         <td >{{ prize.prize_id }}</td>
         <td >{{ prize.code }}</td>
-        <td >{{ prize.prize }} £</td>
+        <td >£{{ prize.prize }}</td>
         <td ><a href='/deleteprize/{{ prize.prize_id }}'><button type="button" class="btn btn-outline-danger">Delete</button></a></td>
       </tr>
   {% endfor %}
@@ -77,7 +77,7 @@
 <div class="text-center ">
     <br><br>
     <div class="alert alert-secondary mx-auto w-25 mt-3 pt-4">    
-      <p>You Have no Codes!!
+      <p>You have no codes!!
       </p>
     </div>
   </div> 

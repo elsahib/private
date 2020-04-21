@@ -8,7 +8,6 @@ from application.forms import RegistrationForm, LoginForm, UpdateAccountForm
 # import from Flask_login module
 from flask_login import login_user, current_user, logout_user, login_required
 # import further forms functionality
-from application.forms import RegistrationForm, LoginForm, UpdateAccountForm
 import requests
 
 # define routes for / & /home, this function will be called when these are accessed
@@ -31,7 +30,7 @@ def gen():
     prizeData = Prizes(code =code, prize = prize, id = current_user.id)
     db.session.add(prizeData)
     db.session.commit()
-    return render_template('home.html', title='home', code=code, prize=prize)
+    return render_template('home.html', title='Home', code=code, prize=prize)
 
 
 #========= View prizes =======================
