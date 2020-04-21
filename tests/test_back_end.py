@@ -4,7 +4,7 @@ import pytest
 from flask import abort, url_for
 from flask_testing import TestCase
 from application import app, db
-from application.models import Users, Players, Stats
+from application.models import Users, Prizes
 from os import getenv
 from application import login_manager
 class TestBase(TestCase):
