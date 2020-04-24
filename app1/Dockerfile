@@ -1,6 +1,11 @@
 FROM quoinedev/python3.7-pandas-alpine 
 
 COPY . .
+ENV SECRET_KEY = ${SECRET_KEY}
+ENV DATABASE_URI = ${DATABASE_URI}
+ENV DBUser = ${DBUser}
+ENV MYSQL_ROOT_PASSWORD = ${MYSQL_ROOT_PASSWORD}
+ENV DBserv = ${DBserv}
 RUN apk update
 RUN apk add libffi-dev
 RUN apk add mysql-client
