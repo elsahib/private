@@ -1,26 +1,26 @@
 version: "3.7"
 services: 
-    app2:
-        image: elsahib/app2
+    txtgen:
+        image: elsahib/txtgen
         ports: 
             - "8000:8000"
-    app3:
-        image: elsahib/app3
+    numgen:
+        image: elsahib/numgen
         ports: 
             - "8001:8000"
-    app4:
-        image: elsahib/app4
+    przgen:
+        image: elsahib/przgen
         depends_on: 
-            - app2
-            - app3
+            - txtgen
+            - numgen
         ports: 
             - "8002:8000"
-    app1:
-        image: elsahib/app1
+    prize:
+        image: elsahib/prize
         depends_on: 
-            - app2
-            - app3
-            - app4
+            - txtgen
+            - numgen
+            - przgen
         ports: 
             - "80:8000"
         environment:

@@ -1,26 +1,26 @@
 version: "3.7"
 services: 
-    app2:
-        build: ./app2
+    txtgen:
+        build: ./txtgen
         ports: 
             - "8000:8000"
-    app3:
-        build: ./app3
+    numgen:
+        build: ./numgen
         ports: 
             - "8001:8000"
-    app4:
-        build: ./app4
+    przgen:
+        build: ./przgen
         depends_on: 
-            - app2
-            - app3
+            - numgen
+            - txtgen
         ports: 
             - "8002:8000"
-    app1:
-        build: ./app1
+    prize:
+        build: ./prize
         depends_on: 
-            - app2
-            - app3
-            - app4
+            - numgen
+            - txtgen
+            - przgen
             - database
         ports: 
             - "80:8000"

@@ -1,6 +1,7 @@
 /venv/*
 /.vscode/*
-/app4/application/__pycache__/*
-/app3/application/__pycache__/*
-/app2/application/__pycache__/*
-/app1/application/__pycache__/*
+/numgen/application/__pycache__/*
+/txtgen/application/__pycache__/*
+/prize/application/__pycache__/*
+/przgen/application/__pycache__/*
+/history_for_print.txt
