@@ -4,59 +4,52 @@ from flask import render_template, redirect, url_for, request
 # import the app object from the ./application/__init__.py
 from application import app, db, bcrypt
 # import PostForm from application.forms
-from application.forms import StatsForm, RegistrationForm, LoginForm, PlayerForm, UpdateForm, UpdatePlayer
+from application.forms import RegistrationForm, LoginForm, UpdateAccountForm
 # import from Flask_login module
 from flask_login import login_user, current_user, logout_user, login_required
 # import further forms functionality
-from application.forms import RegistrationForm, LoginForm, UpdateAccountForm
-
+import requests
 
 # define routes for / & /home, this function will be called when these are accessed
 # General site information accessable to everyone
-#========== Home Page ============
+#========== Home Page ========================
 @app.route('/')
 @app.route('/home')
 def home():
+
+
     return render_template('home.html', title='Home')
 
-#========== About Page ============
-@app.route('/about')
-def about():
-    return render_template('about.html', title='About')
-
-
-#========= Adding Stats =====================
-@app.route('/addstats', methods=['GET', 'POST'])
-@login_required 
-def addstats():
-
-    form = StatsForm()
-    if form.validate_on_submit():
-        statsData = Stats(goals = form.goals.data,assists = form.assists.data,chances =form.chances.data,shots =form.shots.data,minutes =form.minutes.data,date =form.date.data, stat=form.player_id.data)
-        db.session.add(statsData)
-        db.session.commit()
-        return redirect(url_for('addstats'))
-
-    else:
-        print(form.errors)
-
-    return render_template('playerstats.html', title='Add Stats', form=form)
-
-#========= View Stats =======================
-@app.route('/view')
+#========== Generate Page ====================
+@app.route('/gen')
 @login_required
-def view():
-    statdata = db.session.query(Players, Stats).select_from(db.join(Stats, Players)).filter(Stats.player_id == Players.player_id)\
-        .filter(Players.id == current_user.id).all()
-    return render_template('view.html', title='View Stats', stats=statdata)
-
-#========= remove stats =====================
-@app.route('/deletestats/<stat_id>')
-@login_required
-def deletestats(stat_id):
-    db.session.query(Stats).filter_by(stat_id = stat_id).delete(synchronize_session=False)
+def gen():
+    response = requests.get('https://prize.azurewebsites.net/home')
+    code = str(response.json()["code"])
+    prize = str(response.json()["prize"])
+    prizeData = Prizes(code =code, prize = prize, id = current_user.id)
+    db.session.add(prizeData)
     db.session.commit()
-    return redirect(url_for('view'))
+    return render_template('home.html', title='Home', code=code, prize=prize)
+
+
+#========= View prizes =======================
+@app.route('/view/<int:num>')
+@login_required
+def view(num):
+    per_page = 10
+    prizes = db.session.query(Prizes).select_from(Prizes).filter_by(id = current_user.id).paginate(per_page = per_page, page = num, error_out=True )
+    
+    return render_template('prize2.html', title='View prizes', prizes=prizes)
+
+#========= remove prizes =====================
+@app.route('/deleteprize/<prize_id>')
+@login_required
+def deleteprize(prize_id):
+
+    db.session.query(Prizes).filter_by(prize_id = prize_id).delete(synchronize_session=False)
+    db.session.commit()
+    return redirect(url_for('view', num=1))
 
 
 
@@ -125,12 +118,9 @@ def account():
 def account_delete():
     user = current_user.id
     account = Users.query.filter_by(id=user).first()
-    players = Players.query.filter_by(id=user)
-    for player in players :
-        stats = db.session.query(Stats).select_from(Stats).filter_by( player_id = player.player_id).all()  
-        for stat in stats :
-            db.session.delete(stat)
-        db.session.delete(player)
+    prizes = prizes.query.filter_by(id=user)
+    for prize in prizes :
+        db.session.delete(prize)
     logout_user()
     db.session.delete(account)
     db.session.commit()
