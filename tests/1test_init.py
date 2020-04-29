@@ -16,17 +16,6 @@ test_admin_last_name = "admin"
 test_admin_email = "admin@email.com"
 test_admin_password = "admin2020"
 
-# Set player variables
-test_player_name = 'player1'
-test_player_team = 'team1'
-test_player_age = '33'
-# Set Stats variables
-test_player_goals = '1'
-test_player_assists = '20'
-test_player_chances = '12'
-test_player_shots = '20'
-test_player_minutes = '50'
-test_player_date = '02-02-2020'
 
 class TestBase(LiveServerTestCase):
 
