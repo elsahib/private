@@ -1,14 +1,17 @@
 version: "3.7"
 services: 
     txtgen:
+        image: elsahib/app2
         build: ./txtgen
         ports: 
             - "8000:8000"
     numgen:
+        image: elsahib/app3
         build: ./numgen
         ports: 
             - "8001:8000"
     przgen:
+        image: elsahib/app4
         build: ./przgen
         depends_on: 
             - numgen
@@ -16,6 +19,7 @@ services:
         ports: 
             - "8002:8000"
     prize:
+        image: elsahib/app1
         build: ./prize
         depends_on: 
             - numgen
