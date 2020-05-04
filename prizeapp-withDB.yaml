@@ -25,7 +25,7 @@ metadata:
   name: numgen
 spec:
   ports:
-  - name: "8000"
+  - name: "8001"
     port: 8000
     targetPort: 8000
   selector:
@@ -63,6 +63,44 @@ spec:
     targetPort: 8000
   selector:
     app: txtgen
+---  
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: prizes
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{MYSQL_ROOT_PASSWORD}}
+        image: mysql:5.7
+        name: mysql
+        ports:
+        - containerPort: 3306
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+  - name: "3306"
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: mysql
 ---
 apiVersion: apps/v1
 kind: Deployment
