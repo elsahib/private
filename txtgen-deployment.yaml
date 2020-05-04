@@ -1,36 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: txtgen
   name: txtgen
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: txtgen
-  strategy: {}
+      app: txtgen
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: txtgen
+        app: txtgen
     spec:
       containers:
       - image: elsahib/app2
-        imagePullPolicy: ""
         name: txtgen
         ports:
         - containerPort: 8000
-        resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
-status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: txtgen
+spec:
+  ports:
+  - name: "8000"
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: txtgen

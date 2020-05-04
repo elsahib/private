@@ -1,29 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.service.type: LoadBalancer
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: prize
   name: prize
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: prize
-  strategy: {}
+      app: prize
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.service.type: LoadBalancer
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: prize
+        app: prize
     spec:
       containers:
       - args:
@@ -31,18 +18,31 @@ spec:
         - -c
         - ./chkDB.sh && gunicorn --workers=4 --bind=0.0.0.0:8000 app:app
         env:
-        - name: DATABASE_URI
-        - name: DBUser
-        - name: DBserv
-        - name: MYSQL_ROOT_PASSWORD
-        - name: SECRET_KEY
+          - name: DATABASE_URI
+            value: {{DATABASE_URI}}
+          - name: DBUser
+            value: {{DBUser}}
+          - name: DBserv
+            value: {{DBserv}}
+          - name: MYSQL_ROOT_PASSWORD
+            value: {{MYSQL_ROOT_PASSWORD}}
+          - name: SECRET_KEY
+            value: {{SECRET_KEY}}
         image: elsahib/app1
-        imagePullPolicy: ""
         name: prize
         ports:
         - containerPort: 8000
-        resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
-status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prize
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 8000
+  selector:
+    app: prize
+  type: LoadBalancer
