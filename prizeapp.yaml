@@ -63,17 +63,6 @@ spec:
     targetPort: 8000
   selector:
     app: txtgen
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mydb
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
 ---  
 apiVersion: apps/v1
 kind: Deployment
@@ -99,14 +88,7 @@ spec:
         name: mysql
         ports:
         - containerPort: 3306
-        volumeMounts:
-        - mountPath: /var/lib/mysql
-          name: mydb
       restartPolicy: Always
-      volumes:
-      - name: mydb
-        persistentVolumeClaim:
-          claimName: mydb
 ---
 apiVersion: v1
 kind: Service
