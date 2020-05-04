@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: numgen
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: numgen
+  template:
+    metadata:
+      labels:
+        app: numgen
+    spec:
+      containers:
+      - image: elsahib/app3
+        name: numgen
+        ports:
+        - containerPort: 8000
+      restartPolicy: Always
+
