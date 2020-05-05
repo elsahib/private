@@ -7,6 +7,10 @@ from application import app, db
 from application.models import Users, Prizes
 from os import getenv
 from application import login_manager
+<<<<<<< HEAD
+=======
+
+>>>>>>> przgen
 class TestBase(TestCase):
 
     def create_app(self):
@@ -56,10 +60,13 @@ class TestViews(TestBase):
     def test_loginview(self):
         response = self.client.get(url_for('login'))
         self.assertEqual(response.status_code, 200)
+<<<<<<< HEAD
 
     def test_aboutview(self):
         response = self.client.get(url_for('about'))
         self.assertEqual(response.status_code, 200)
+=======
+>>>>>>> przgen
     
     def test_registerview(self):
         response = self.client.get(url_for('register'))
@@ -70,6 +77,7 @@ class TestViews(TestBase):
     def test_account(self):
         response = self.client.get(url_for('account'))
         self.assertEqual(response.status_code, 302)
+<<<<<<< HEAD
     def test_addplayer(self):
         response = self.client.get(url_for('addplayer'))
         self.assertEqual(response.status_code, 302)
@@ -80,6 +88,14 @@ class TestViews(TestBase):
 
     def test_addstats(self):
         response = self.client.get(url_for('addstats'))
+=======
+    def test_deleteprize(self):
+        response = self.client.get(url_for('deleteprize'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_addstats(self):
+        response = self.client.get(url_for('gen'))
+>>>>>>> przgen
         self.assertEqual(response.status_code, 302)
 
     def test_view(self):
