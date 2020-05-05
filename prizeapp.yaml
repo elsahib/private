@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - image: elsahib/numgen
+        imagePullPolicy: "Always"
         name: numgen
         ports:
         - containerPort: 8000
@@ -47,6 +48,7 @@ spec:
     spec:
       containers:
       - image: elsahib/txtgen
+        imagePullPolicy: "Always"
         name: txtgen
         ports:
         - containerPort: 8000
@@ -80,6 +82,7 @@ spec:
     spec:
       containers:
       - image: elsahib/przgen
+        imagePullPolicy: "Always"
         name: przgen
         ports:
         - containerPort: 8000
@@ -128,6 +131,7 @@ spec:
           - name: SECRET_KEY
             value: {{SECRET_KEY}}
         image: elsahib/prize
+        imagePullPolicy: "Always"
         name: prize
         ports:
         - containerPort: 8000
