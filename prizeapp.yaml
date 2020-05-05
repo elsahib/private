@@ -13,7 +13,7 @@ spec:
         app: numgen
     spec:
       containers:
-      - image: elsahib/numgen
+      - image: elsahib/numgen:latest
         imagePullPolicy: "Always"
         name: numgen
         ports:
@@ -47,7 +47,7 @@ spec:
         app: txtgen
     spec:
       containers:
-      - image: elsahib/txtgen
+      - image: elsahib/txtgen:latest
         imagePullPolicy: "Always"
         name: txtgen
         ports:
@@ -81,7 +81,7 @@ spec:
         app: przgen
     spec:
       containers:
-      - image: elsahib/przgen
+      - image: elsahib/przgen:latest
         imagePullPolicy: "Always"
         name: przgen
         ports:
@@ -130,7 +130,7 @@ spec:
             value: {{MYSQL_ROOT_PASSWORD}}
           - name: SECRET_KEY
             value: {{SECRET_KEY}}
-        image: elsahib/prize
+        image: elsahib/prize:latest
         imagePullPolicy: "Always"
         name: prize
         ports:
